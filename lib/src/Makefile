@@ -16,6 +16,8 @@
 CFLAGS = -g -Wall -fPIC -O2 -DUSECASE=2 # for Linux and other gcc systems
 OP=$(CFLAGS)
 CC=emcc	#for Linux
+AR=emar
+RANLIB=emranlib
 
 # compilation rule for general cases
 .o :
@@ -27,23 +29,25 @@ SWEOBJ = swedate.o swehouse.o swejpl.o swemmoon.o swemplan.o sweph.o\
 	 swephlib.o swecl.o swehel.o
 
 astro: astro.o libswe.a
-	$(CC) $(OP) --preload-file eph -o astro.js astro.o -s WASM=1 -s  EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]' -L. -lswe -lm -ldl
+	$(CC) $(OP) --preload-file eph -o astro.mjs astro.o -s WASM=1 -s MODULARIZE=1 -s EXPORT_ES6=1 -s ENVIRONMENT=web,worker -s EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]' -L. -lswe -lm -ldl
 
 install:
-	# mv astro.js ../../js/; mv astro.wasm ../../js/; mv astro.wast ../../js/
-	mv astro.js ../../js/; mv astro.wasm ../../js/; mv astro.data ../../js/
+	mkdir -p ../../dist
+	mv astro.mjs ../../dist/; mv astro.wasm ../../dist/; mv astro.data ../../dist/
 
 # create an archive and a dynamic link libary fro SwissEph
 # a user of this library will inlcude swephexp.h  and link with -lswe
 
 libswe.a: $(SWEOBJ)
-	ar r libswe.a	$(SWEOBJ)
+	$(AR) rc libswe.a $(SWEOBJ)
+	$(RANLIB) libswe.a
 
 libswe.so: $(SWEOBJ)
 	$(CC) -shared -o libswe.so $(SWEOBJ)
 
 clean:
-	rm -f *.o *.wasm *.wast *.js *.html astro libswe*; rm ../../js/astro.*
+	rm -f *.o *.wasm *.wast *.js *.mjs *.html astro libswe*
+	rm -f ../../dist/astro.*
 
 ###
 swecl.o: swejpl.h sweodef.h swephexp.h swedll.h sweph.h swephlib.h
