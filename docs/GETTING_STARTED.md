@@ -5,7 +5,7 @@ This guide demonstrates how to use the Swiss Ephemeris WebAssembly module and th
 ## Installation
 
 Download the prebuilt files from the GitHub release or build them yourself using the provided Makefile.
-The distributable artifacts are located in the `dist/` directory and include:
+The distributable artifacts are created by the build workflow and placed in the `dist/` directory. They include:
 
 - `astro.mjs` – ES module wrapper around the wasm code
 - `astro.wasm` – WebAssembly binary

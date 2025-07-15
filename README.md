@@ -134,7 +134,8 @@ Replace `<owner>`, `<repo>` and `<tag>` with the release you wish to use.
 
 ## TypeScript API
 
-A typed wrapper is provided to make using the WebAssembly module easier.
+A typed wrapper is provided to make using the WebAssembly module easier. It is
+built as part of each release and distributed alongside `astro.mjs`.
 Install the artifacts from a release and import `Sweph`:
 
 ```ts
