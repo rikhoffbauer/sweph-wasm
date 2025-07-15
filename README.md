@@ -115,3 +115,19 @@ present in the index.html file
 ## The Application Web
 
 ![The Application Web](/assets/img/sweph-wasm.png)
+
+## ES Module usage
+
+Each release contains a distributable ES module built from the C sources. The
+module files can be loaded directly from a CDN such as jsDelivr. Example:
+
+```html
+<script type="module">
+import initSweph from 'https://cdn.jsdelivr.net/gh/<owner>/<repo>@<tag>/dist/astro.mjs';
+initSweph().then((Module) => {
+  // use Module.ccall or Module.cwrap here
+});
+</script>
+```
+
+Replace `<owner>`, `<repo>` and `<tag>` with the release you wish to use.
