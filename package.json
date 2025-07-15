@@ -1,0 +1,13 @@
+{
+  "name": "sweph-wasm",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build:ts": "tsc",
+    "docs": "typedoc"
+  },
+  "devDependencies": {
+    "typedoc": "^0.25.5",
+    "typescript": "^5.4.5"
+  }
+}

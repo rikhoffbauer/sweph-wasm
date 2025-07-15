@@ -131,3 +131,18 @@ initSweph().then((Module) => {
 ```
 
 Replace `<owner>`, `<repo>` and `<tag>` with the release you wish to use.
+
+## TypeScript API
+
+A typed wrapper is provided to make using the WebAssembly module easier.
+Install the artifacts from a release and import `Sweph`:
+
+```ts
+import { Sweph } from 'https://cdn.jsdelivr.net/gh/<owner>/<repo>@<tag>/dist/sweph.js';
+
+const sweph = await Sweph.init('https://cdn.jsdelivr.net/gh/<owner>/<repo>@<tag>/dist/astro.mjs');
+const result = sweph.get({ /* parameters */ });
+```
+
+See the [documentation site](https://<owner>.github.io/<repo>/) for more examples and API details.
+

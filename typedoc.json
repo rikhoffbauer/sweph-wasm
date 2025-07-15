@@ -1,0 +1,6 @@
+{
+  "entryPoints": ["src/sweph.ts"],
+  "out": "site",
+  "tsconfig": "tsconfig.json",
+  "readme": "docs/GETTING_STARTED.md"
+}
